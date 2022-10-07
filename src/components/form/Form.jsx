@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, deleteTodo } from "../../redux/modules/todolist";
+import styled from "styled-components";
 
 function Form() {
   const dispatch = useDispatch();
@@ -29,16 +30,25 @@ function Form() {
 
   return (
     <div>
-      <div className="add-form">
+      <Formdiv>
+        <label htmlFor="title">제목</label>
         <input name="title" onChange={onChangHandler} value={title} />
-        <br />
+        <label htmlFor="body">내용</label>
         <input name="body" onChange={onChangHandler} value={body} />
         <button className="form-btn" onClick={onClickAdd}>
           ADD
         </button>
-      </div>
+      </Formdiv>
     </div>
   );
 }
 
 export default Form;
+
+const Formdiv = styled.div`
+  display: flex;
+
+  justify-content: center;
+
+  margin: 20px 0;
+`;

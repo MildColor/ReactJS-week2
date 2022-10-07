@@ -3,12 +3,13 @@
 import React from "react";
 
 import TodoList from "./pages/TodoList";
+import Router from "./shared/Router";
 
 // 4. Action Creator를 import 합니다.
 // import { addNumber, minusNumber } from "./redux/modules/counter";
 
 const App = () => {
-  return <TodoList />;
+  return <Router />;
 };
 export default App;
 

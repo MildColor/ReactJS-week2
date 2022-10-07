@@ -1,11 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 
 function Header() {
   return (
-    <div className="container">
+    <Headerdiv>
       <span className="header_title">ToDolist</span>
-    </div>
+    </Headerdiv>
   );
 }
 
 export default Header;
+
+const Headerdiv = styled.div`
+  display: flex;
+  font-size: 100px;
+`;

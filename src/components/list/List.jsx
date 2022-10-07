@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, deleteTodo } from "../../redux/modules/todolist";
+import styled from "styled-components";
+
 import Todo from "../todo/Todo";
 
 function List() {
@@ -9,9 +11,9 @@ function List() {
   // console.log(todos);
 
   return (
-    <div className="list-container">
+    <Listdiv>
       <h2>Working...!</h2>
-      <div className="list-wrapper">
+      <Wrapdiv>
         {todos.map((todo) => {
           if (todo.isDone === false) {
             return <Todo key={todo.id} todo={todo}></Todo>;
@@ -19,10 +21,10 @@ function List() {
             return null;
           }
         })}
-      </div>
+      </Wrapdiv>
 
       <h2>Done...!</h2>
-      <div className="list-wrapper">
+      <Wrapdiv>
         {todos.map((todo) => {
           if (todo.isDone === true) {
             return <Todo key={todo.id} todo={todo}></Todo>;
@@ -30,9 +32,20 @@ function List() {
             return null;
           }
         })}
-      </div>
-    </div>
+      </Wrapdiv>
+    </Listdiv>
   );
 }
 
 export default List;
+
+const Listdiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const Wrapdiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;

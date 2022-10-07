@@ -1,7 +1,10 @@
+import { Action } from "@remix-run/router";
+
 // Action Value
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 const ISDONE_TODO = "ISDONE_TODO";
+const GET_TODO_BY_ID = "GET_TODO_BY_ID";
 
 let num = 0;
 // Action Creator
@@ -19,8 +22,6 @@ export const addTodo = (todo) => {
 export const deleteTodo = (todoId) => {
   return {
     type: DELETE_TODO,
-
-    //ES6
     todoId,
   };
 };
@@ -28,8 +29,13 @@ export const deleteTodo = (todoId) => {
 export const isDoneTodo = (todoId) => {
   return {
     type: ISDONE_TODO,
+    todoId,
+  };
+};
 
-    //ES6
+export const getTodoById = (todoId) => {
+  return {
+    type: GET_TODO_BY_ID,
     todoId,
   };
 };
@@ -37,6 +43,12 @@ export const isDoneTodo = (todoId) => {
 // Initial State
 const initialState = {
   todos: [],
+  todo: {
+    id: "0",
+    title: "",
+    body: "",
+    isDone: false,
+  },
 };
 
 // Reducer
@@ -60,6 +72,15 @@ const inputs = (state = initialState, action) => {
           ),
         ],
       };
+
+    case GET_TODO_BY_ID:
+      return {
+        todo: {
+          ...state.todo,
+          ...state.todos.find((todo) => todo.id === action.todoId),
+        },
+      };
+
     default:
       return state;
   }
