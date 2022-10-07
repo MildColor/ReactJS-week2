@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import counter from "../modules/counter";
 
 const rootReducer = combineReducers({
-  counter: counter,
+  // counter: counter,
 });
 const store = createStore(rootReducer);
 
