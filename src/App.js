@@ -1,45 +1,45 @@
-// src/App.js
-
-import React from "react";
-import styled from "styled-components";
-
-const StContainer = styled.div`
-  display: flex;
-`;
-
-const StBox = styled.div`
-  width: 100px;
-  height: 100px;
-  border: 1px solid ${(props) => props.borderColor};
-  margin: 20px;
-`;
+import { useState } from "react";
 
 const App = () => {
-  // 박스의 색을 배열에 담습니다.
-  const boxList = ["red", "green", "blue"];
-
-  // 색을 넣으면, 이름을 반환해주는 함수를 만듭니다.
-  const getBoxName = (color) => {
-    switch (color) {
-      case "red":
-        return "빨간 박스";
-      case "green":
-        return "초록 박스";
-      case "blue":
-        return "파란 박스";
-      default:
-        return "검정 박스";
-    }
-  };
-
+  const [number, setNumber] = useState(0);
   return (
-    <StContainer>
-      {/* map을 이용해서 StBox를 반복하여 화면에 그립니다. */}
-      {boxList.map((box) => (
-        <StBox borderColor={box}>{getBoxName(box)}</StBox>
-      ))}
-    </StContainer>
+    <div>
+      {/* 버튼을 누르면 1씩 플러스된다. */}
+      <div>{number}</div>
+      <button
+        onClick={() => {
+          setNumber(number + 1); // 첫번째 줄
+          setNumber(number + 1); // 두번쨰 줄
+          setNumber(number + 1); // 세번째 줄
+        }}
+      >
+        버튼
+      </button>
+    </div>
   );
 };
 
 export default App;
+
+// import { useState } from "react";
+
+// const App = () => {
+//   const [number, setNumber] = useState(0);
+//   return (
+//     <div>
+// 			{/* 버튼을 누르면 3씩 플러스 된다. */}
+//       <div>{number}</div>
+//       <button
+//         onClick={() => {
+//           setNumber((previousState) => previousState + 1);
+//           setNumber((previousState) => previousState + 1);
+//           setNumber((previousState) => previousState + 1);
+//         }}
+//       >
+//         버튼
+//       </button>
+//     </div>
+//   );
+// }
+
+// export default App;
