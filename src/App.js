@@ -1,8 +1,7 @@
 // src/App.js
 
 import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import TodoList from "./pages/TodoList";
 
 // 4. Action Creator를 import 합니다.
@@ -12,6 +11,7 @@ const App = () => {
   return <TodoList />;
 };
 export default App;
+
 // const App = () => {
 //   const dispatch = useDispatch();
 //   const [number, setNumber] = useState(0);
