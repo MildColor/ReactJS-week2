@@ -1,9 +1,12 @@
 import { createStore } from "redux";
 import { combineReducers } from "redux";
-import counter from "../modules/counter";
+import todolist from "../modules/todolist";
+
+// import counter from "../modules/counter";
 
 const rootReducer = combineReducers({
   // counter: counter,
+  todolist: todolist,
 });
 const store = createStore(rootReducer);
 

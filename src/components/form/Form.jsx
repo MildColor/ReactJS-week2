@@ -10,8 +10,6 @@ function Form() {
         <input />
         <button className="form-btn">ADD</button>
       </div>
-
-      <List />
     </div>
   );
 }
