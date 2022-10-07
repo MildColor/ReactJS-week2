@@ -19,6 +19,14 @@ const App = () => {
       >
         + 1
       </button>
+
+      <button
+        onClick={() => {
+          dispatch({ type: "MINUS_ONE" });
+        }}
+      >
+        -1
+      </button>
     </div>
   );
 };
