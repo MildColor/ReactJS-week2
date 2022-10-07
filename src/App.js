@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // 4. Action Creator를 import 합니다.
-import { addNumber } from "./redux/modules/counter";
+import { addNumber, minusNumber } from "./redux/modules/counter";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,6 +24,10 @@ const App = () => {
     dispatch(addNumber(number));
   };
 
+  const onClickMinusNumberHandler = () => {
+    dispatch(minusNumber(number));
+  };
+
   // 콘솔로 onChangeHandler가 잘 연결되었는지 확인해봅니다.
   // input에 값을 넣을 때마다 콘솔에 그 값이 찍히면 연결 성공!
   console.log(number);
@@ -35,7 +39,7 @@ const App = () => {
       <input type="number" onChange={onChangeHandler} />
       {/* 3. 더하기 버튼 이벤트핸들러를 연결해줍니다. */}
       <button onClick={onClickAddNumberHandler}>더하기</button>
-      <button>빼기</button>
+      <button onClick={onClickMinusNumberHandler}>빼기</button>
     </div>
   );
 };
