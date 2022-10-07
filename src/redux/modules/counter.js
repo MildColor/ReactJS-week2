@@ -1,5 +1,4 @@
 // src/modules/counter.js
-import counter from "../modules/counter";
 
 // 초기 상태값
 const initialState = {
