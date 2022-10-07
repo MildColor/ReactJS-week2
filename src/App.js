@@ -1,31 +1,32 @@
+// src/App.js
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// 사용할 Action creator를 import 합니다.
+import { minusOne, plusOne } from "./redux/modules/counter";
+
 const App = () => {
   const dispatch = useDispatch();
-
-  // 👇 코드 추가
   const number = useSelector((state) => state.counter.number);
 
-  console.log(number); // 콘솔 추가
   return (
     <div>
-      {/* 👇 코드 추가 */}
       {number}
       <button
         onClick={() => {
-          dispatch({ type: "PLUS_ONE" });
+          dispatch(plusOne()); // 액션객체를 Action creator로 변경합니다.
         }}
       >
         + 1
       </button>
-
+      {/* 빼기 버튼 추가 */}
       <button
         onClick={() => {
-          dispatch({ type: "MINUS_ONE" });
+          dispatch(minusOne()); // 액션객체를 Action creator로 변경합니다.
         }}
       >
-        -1
+        - 1
       </button>
     </div>
   );
