@@ -43,12 +43,7 @@ export const getTodoById = (todoId) => {
 // Initial State
 const initialState = {
   todos: [],
-  todo: {
-    id: "0",
-    title: "",
-    body: "",
-    isDone: false,
-  },
+  todo: {},
 };
 
 // Reducer
@@ -75,12 +70,14 @@ const inputs = (state = initialState, action) => {
 
     case GET_TODO_BY_ID:
       return {
+        // 두개의 프로퍼티를 가진 initial state를 조작할때에는 하나만 return 해주면 나머지하나는 삭제가 되어버린다.
+        // 때문에 둘다 만들어 주는것이 맞는 것 같다.
+        // 또 action에서 온  todoId는 문자열이기 때문에 ===으로 비교하면 에러가 난다.
+        todos: [...state.todos],
         todo: {
-          ...state.todo,
-          ...state.todos.find((todo) => todo.id === action.todoId),
+          ...state.todos.find((todo) => todo.id == action.todoId),
         },
       };
-
     default:
       return state;
   }
