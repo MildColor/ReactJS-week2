@@ -19,6 +19,7 @@ export const addTodo = (todo) => {
     },
   };
 };
+
 export const deleteTodo = (todoId) => {
   return {
     type: DELETE_TODO,
