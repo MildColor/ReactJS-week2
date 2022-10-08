@@ -1,17 +1,8 @@
 import React from "react";
-import Header from "../header/Header";
-import Form from "../form/Form";
-import List from "../list/List";
 import styled from "styled-components";
 
-function Layout() {
-  return (
-    <Layoutdiv>
-      <Header></Header>
-      <Form></Form>
-      <List></List>
-    </Layoutdiv>
-  );
+function Layout({ children }) {
+  return <Layoutdiv>{children}</Layoutdiv>;
 }
 
 export default Layout;

@@ -20,7 +20,8 @@ function Form() {
     setInputs({ ...inputs, [name]: value });
   };
 
-  const onClickAdd = () => {
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
     const todo = { title, body, id, isDone };
     dispatch(addTodo(todo));
     setInputs(initInputs);
@@ -29,26 +30,39 @@ function Form() {
   // console.log(todos);
 
   return (
-    <div>
-      <Formdiv>
-        <label htmlFor="title">제목</label>
-        <input name="title" onChange={onChangHandler} value={title} />
-        <label htmlFor="body">내용</label>
-        <input name="body" onChange={onChangHandler} value={body} />
-        <button className="form-btn" onClick={onClickAdd}>
-          ADD
-        </button>
-      </Formdiv>
-    </div>
+    <StForm onSubmit={onSubmitHandler}>
+      <label htmlFor="title">제목</label>
+      <input name="title" onChange={onChangHandler} value={title} />
+      <label htmlFor="body">내용</label>
+      <input name="body" onChange={onChangHandler} value={body} />
+      <button className="form-btn">ADD</button>
+    </StForm>
   );
 }
 
 export default Form;
 
-const Formdiv = styled.div`
+const StForm = styled.form`
   display: flex;
-
   justify-content: center;
-
   margin: 20px 0;
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  background-color: palevioletred;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  && input {
+    margin: 0 10px;
+  }
+  && label {
+    font-weight: 800;
+  }
+  && button {
+    background-color: pink;
+    border: 1px solid pink;
+    border-radius: 3px;
+  }
 `;

@@ -10,9 +10,9 @@ function List() {
   // console.log(todos);
 
   return (
-    <Listdiv>
+    <ListdUl>
       <h2>Working...!</h2>
-      <Wrapdiv>
+      <Wrapli>
         {todos?.map((todo) => {
           if (todo.isDone === false) {
             return <Todo key={todo.id} todo={todo}></Todo>;
@@ -20,10 +20,10 @@ function List() {
             return null;
           }
         })}
-      </Wrapdiv>
+      </Wrapli>
 
       <h2>Done...!</h2>
-      <Wrapdiv>
+      <Wrapli>
         {todos?.map((todo) => {
           if (todo.isDone === true) {
             return <Todo key={todo.id} todo={todo}></Todo>;
@@ -31,20 +31,20 @@ function List() {
             return null;
           }
         })}
-      </Wrapdiv>
-    </Listdiv>
+      </Wrapli>
+    </ListdUl>
   );
 }
 
 export default List;
 
-const Listdiv = styled.div`
+const ListdUl = styled.ul`
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
-const Wrapdiv = styled.div`
+const Wrapli = styled.li`
   display: flex;
   flex-wrap: wrap;
 `;

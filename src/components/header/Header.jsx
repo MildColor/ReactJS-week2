@@ -4,7 +4,7 @@ import styled from "styled-components";
 function Header() {
   return (
     <Headerdiv>
-      <span className="header_title">ToDolist</span>
+      <h1 className="header_title">ToDolist</h1>
     </Headerdiv>
   );
 }
@@ -13,5 +13,5 @@ export default Header;
 
 const Headerdiv = styled.div`
   display: flex;
-  font-size: 100px;
+  font-size: 30px;
 `;
