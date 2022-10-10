@@ -20,7 +20,7 @@ function TodoList() {
 export default TodoList;
 
 const StBox = styled.div`
-  background-color: pink;
+  background-color: #d2daff;
   display: flex;
   justify-content: center;
 `;

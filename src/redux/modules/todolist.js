@@ -1,12 +1,13 @@
-import { Action } from "@remix-run/router";
-
 // Action Value
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 const ISDONE_TODO = "ISDONE_TODO";
 const GET_TODO_BY_ID = "GET_TODO_BY_ID";
+const GENERATED_TODO = "GENERATED_TODO";
 
-let num = 0;
+// let num = 0;
+// id: num++,
+//원래는 id 값으로 num을 줬었는데
 // Action Creator
 export const addTodo = (todo) => {
   return {
@@ -15,7 +16,7 @@ export const addTodo = (todo) => {
       title: todo.title,
       body: todo.body,
       isDone: todo.isDone,
-      id: num++,
+      id: todo.id,
     },
   };
 };
@@ -41,6 +42,13 @@ export const getTodoById = (todoId) => {
   };
 };
 
+export const generatedTodo = (payload) => {
+  return {
+    type: GENERATED_TODO,
+    payload,
+  };
+};
+
 // Initial State
 const initialState = {
   todos: [],
@@ -51,10 +59,13 @@ const initialState = {
 const inputs = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
-      return { todos: [...state.todos, action.todo] };
+      return {
+        todos: [...state.todos, action.todo],
+      };
 
     case DELETE_TODO:
       return {
+        ...state,
         todos: [...state.todos.filter((todo) => todo.id !== action.todoId)],
       };
 
@@ -74,11 +85,12 @@ const inputs = (state = initialState, action) => {
         // 두개의 프로퍼티를 가진 initial state를 조작할때에는 하나만 return 해주면 나머지하나는 삭제가 되어버린다.
         // 때문에 둘다 만들어 주는것이 맞는 것 같다.
         // 또 action에서 온  todoId는 문자열이기 때문에 ===으로 비교하면 에러가 난다.
-        todos: [...state.todos],
+        ...state,
         todo: {
-          ...state.todos.find((todo) => todo.id == action.todoId),
+          ...state.todos.find((todo) => todo.id === parseInt(action.todoId)),
         },
       };
+
     default:
       return state;
   }
