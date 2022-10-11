@@ -7,17 +7,16 @@ import store from "../redux/config/configStore";
 
 function Detail() {
   const dispatch = useDispatch();
-  const todo = useSelector((state) => state.todolist.todo);
-
   const { id } = useParams();
+
+  dispatch(getTodoById(id));
+  // useEffect(() => {
+  //   dispatch(getTodoById(id));
+  // }, [dispatch, id]);
+
+  const todo = useSelector((state) => state.todolist.todo);
   const navigate = useNavigate();
-
-  // dispatch(getTodoById(id));
-  console.log(todo);
-
-  useEffect(() => {
-    dispatch(getTodoById(id));
-  }, [dispatch, id]);
+  console.log(todo.id);
 
   // store.subscribe(() => console.log(store.getState()));
   return (

@@ -51,7 +51,7 @@ export const deleteAll = () => {
 // Initial State
 const initialState = {
   todos: [],
-  todo: {},
+  todo: { id: 0, title: "", body: "", isDone: false },
 };
 
 // Reducer
