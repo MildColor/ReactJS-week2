@@ -3,7 +3,7 @@ const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 const ISDONE_TODO = "ISDONE_TODO";
 const GET_TODO_BY_ID = "GET_TODO_BY_ID";
-const GENERATED_TODO = "GENERATED_TODO";
+const DELETE_ALL = "DELETE_ALL";
 
 // let num = 0;
 // id: num++,
@@ -42,10 +42,9 @@ export const getTodoById = (todoId) => {
   };
 };
 
-export const generatedTodo = (payload) => {
+export const deleteAll = () => {
   return {
-    type: GENERATED_TODO,
-    payload,
+    type: DELETE_ALL,
   };
 };
 
@@ -89,6 +88,11 @@ const inputs = (state = initialState, action) => {
         todo: {
           ...state.todos.find((todo) => todo.id === parseInt(action.todoId)),
         },
+      };
+
+    case DELETE_ALL:
+      return {
+        ...initialState,
       };
 
     default:

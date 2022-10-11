@@ -44,7 +44,7 @@ const Tododiv = styled.div`
   margin: 20px;
   padding: 7px;
   border-radius: 12px;
-  background-color: #fad2e6;
+  background-color: #fff5fef4;
   && h2,
   div {
     overflow-wrap: break-word;

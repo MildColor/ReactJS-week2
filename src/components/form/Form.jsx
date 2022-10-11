@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, deleteTodo } from "../../redux/modules/todolist";
+import { addTodo, deleteAll, deleteTodo } from "../../redux/modules/todolist";
 import styled from "styled-components";
 
 function Form() {
@@ -14,7 +14,7 @@ function Form() {
     isDone: false,
     id: 0,
   });
-  const { title, body, id, isDone } = todoObj;
+  const { title, body } = todoObj;
 
   const onChangHandler = (e) => {
     const { name, value } = e.target;
@@ -35,14 +35,24 @@ function Form() {
     });
   };
 
+  const onDeleteHandler = (e) => {
+    e.preventDefault();
+    dispatch(deleteAll());
+  };
+
   return (
-    <StForm onSubmit={onSubmitHandler}>
-      <label htmlFor="title">제목</label>
-      <input name="title" onChange={onChangHandler} value={title} />
-      <label htmlFor="body">내용</label>
-      <input name="body" onChange={onChangHandler} value={body} />
-      <button className="form-btn">ADD</button>
-    </StForm>
+    <StFormDiv>
+      <StForm onSubmit={onSubmitHandler}>
+        <label htmlFor="title">제목</label>
+        <input name="title" onChange={onChangHandler} value={title} />
+        <label htmlFor="body">내용</label>
+        <input name="body" onChange={onChangHandler} value={body} />
+        <button className="form-btn">ADD</button>
+        <button className="form-btn" onClick={onDeleteHandler}>
+          DELETE ALL
+        </button>
+      </StForm>
+    </StFormDiv>
   );
 }
 
@@ -50,25 +60,40 @@ export default Form;
 
 const StForm = styled.form`
   display: flex;
+  align-items: center;
+  text-align: center;
   justify-content: center;
-  margin: 20px 0;
-  padding: 10px;
-  width: 100%;
+  & label {
+    margin: 0 20px;
+    writing-mode: vertical-lr;
+    color: ${(props) => props.theme.secondaryyellow};
+    font-weight: bold;
+  }
+  & input {
+    border: 3px solid ${(props) => props.theme.lightlime};
+    border-radius: 10px;
+  }
+
+  .form-btn {
+    margin: 0 10px;
+    background-color: ${(props) => props.theme.primaryred};
+    border-radius: 5px;
+    border: 3px solid ${(props) => props.theme.lightlime};
+    color: ${(props) => props.theme.secondaryyellow};
+    font-weight: bold;
+  }
+`;
+
+const StFormDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: ${(props) => props.theme.primaryred};
+  border: 3px solid ${(props) => props.theme.lightlime};
+  width: 70%;
   height: 50px;
   align-items: center;
-  background-color: #b1b2ff;
   border-radius: 10px;
   box-sizing: border-box;
-
-  && input {
-    margin: 0 10px;
-  }
-  && label {
-    font-weight: 800;
-  }
-  && button {
-    background-color: #aac4ff;
-    border: 1px solid #d2daff;
-    border-radius: 3px;
-  }
 `;

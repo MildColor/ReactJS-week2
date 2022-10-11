@@ -14,4 +14,9 @@ export default Header;
 const Headerdiv = styled.div`
   display: flex;
   font-size: 30px;
+  color: ${(props) => props.theme.secondaryyellow};
+
+  :hover {
+    color: ${(props) => props.theme.lightlime};
+  }
 `;

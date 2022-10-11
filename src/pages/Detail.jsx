@@ -7,17 +7,19 @@ import store from "../redux/config/configStore";
 
 function Detail() {
   const dispatch = useDispatch();
+  const todo = useSelector((state) => state.todolist.todo);
+
   const { id } = useParams();
   const navigate = useNavigate();
+
   // dispatch(getTodoById(id));
+  console.log(todo);
 
   useEffect(() => {
     dispatch(getTodoById(id));
   }, [dispatch, id]);
 
   // store.subscribe(() => console.log(store.getState()));
-  const todo = useSelector((state) => state.todolist.todo);
-
   return (
     <Detaildiv>
       <div className="detail-top">

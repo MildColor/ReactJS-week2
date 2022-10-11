@@ -1,17 +1,28 @@
 // src/App.js
 
 import React from "react";
+import styled, { ThemeProvider } from "styled-components";
 
-import TodoList from "./pages/TodoList";
 import Router from "./shared/Router";
 
 // 4. Action Creator를 import 합니다.
 // import { addNumber, minusNumber } from "./redux/modules/counter";
 
 const App = () => {
-  return <Router />;
+  return (
+    <ThemeProvider theme={theme}>
+      <Router />
+    </ThemeProvider>
+  );
 };
 export default App;
+
+const theme = {
+  primaryred: "#F38181",
+  secondaryyellow: "#FCE38A",
+  rareteal: "#95E1D3",
+  lightlime: "#EAFFD0",
+};
 
 // const App = () => {
 //   const dispatch = useDispatch();

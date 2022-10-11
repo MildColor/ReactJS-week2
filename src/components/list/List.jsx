@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addTodo, deleteTodo } from "../../redux/modules/todolist";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import Todo from "../todo/Todo";
@@ -11,7 +10,7 @@ function List() {
 
   return (
     <ListdUl>
-      <h2>Working...!</h2>
+      <h2 className="list-name">Working...!</h2>
       <Wrapli>
         {todos?.map((todo) => {
           if (todo.isDone === false) {
@@ -22,7 +21,7 @@ function List() {
         })}
       </Wrapli>
 
-      <h2>Done...!</h2>
+      <h2 className="list-name">Done...!</h2>
       <Wrapli>
         {todos?.map((todo) => {
           if (todo.isDone === true) {
@@ -39,12 +38,13 @@ function List() {
 export default List;
 
 const ListdUl = styled.ul`
-  display: flex;
-  flex-direction: column;
+  .list-name {
+    color: ${(props) => props.theme.lightlime};
+  }
   width: 100%;
 `;
 
 const Wrapli = styled.li`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 `;
