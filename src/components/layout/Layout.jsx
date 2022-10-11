@@ -10,10 +10,9 @@ export default Layout;
 const Layoutdiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 90%;
-  height: 100%;
+  height: 100vh;
   min-width: 800px;
   max-width: 1200px;
 `;

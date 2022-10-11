@@ -76,6 +76,8 @@ const StForm = styled.form`
 
   .form-btn {
     margin: 0 10px;
+    padding: 0 2px;
+    padding-top: 1px;
     background-color: ${(props) => props.theme.primaryred};
     border-radius: 5px;
     border: 3px solid ${(props) => props.theme.lightlime};
@@ -89,10 +91,11 @@ const StFormDiv = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-bottom: 50px;
   background-color: ${(props) => props.theme.primaryred};
   border: 3px solid ${(props) => props.theme.lightlime};
   width: 70%;
-  height: 50px;
+  padding: 20px 0;
   align-items: center;
   border-radius: 10px;
   box-sizing: border-box;

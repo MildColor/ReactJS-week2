@@ -1,8 +1,8 @@
 // src/App.js
 
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "./globalstyles/GlobalStyles";
 import Router from "./shared/Router";
 
 // 4. Action Creator를 import 합니다.
@@ -10,9 +10,12 @@ import Router from "./shared/Router";
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Router />
-    </ThemeProvider>
+    <>
+      <GlobalStyles />
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+    </>
   );
 };
 export default App;
