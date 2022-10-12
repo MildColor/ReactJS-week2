@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { addMovies } from "../../redux/modules/movies";
+import MovieTable from "../todo/MovieTable";
 
 //8a7f3661b129d3334ad1a5ba059fe560
-function MovieList() {
-  const [loading, setLoading] = useState(true);
-  const [movies, setMovies] = useState([]);
 
+function MovieList() {
+  const movieList = useSelector((state) => state.movies.movieList);
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   // async / await
   const getMovies = async () => {
-    const json = await (
-      await fetch(
-        `	http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=8a7f3661b129d3334ad1a5ba059fe560&targetDt=20120101`
-      )
-    ).json();
-
-    setMovies(json.boxOfficeResult.weeklyBoxOfficeList);
+    for (let i = 1; i < 11; i++) {
+      const json = await (
+        await fetch(
+          `		http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=8a7f3661b129d3334ad1a5ba059fe560&curPage=${i}`
+        )
+      ).json();
+      dispatch(addMovies(json.movieListResult.movieList));
+    }
     setLoading(false);
   };
 
@@ -23,12 +27,10 @@ function MovieList() {
     getMovies();
   }, []);
 
-  console.log(movies);
+  console.log(movieList);
   return (
     <ListdUl>
-      <Wrapli>
-        <div>{loading ? <h1>Loading...</h1> : null}</div>
-      </Wrapli>
+      {loading ? "Loading..." : <MovieTable movieList={movieList}></MovieTable>}
     </ListdUl>
   );
 }
@@ -45,11 +47,6 @@ const ListdUl = styled.ul`
   width: 100%;
 `;
 
-const Wrapli = styled.li`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-`;
-
 // promise
 //   useEffect(() => {
 //     fetch(
@@ -60,4 +57,25 @@ const Wrapli = styled.li`
 //         setMovies(json.boxOfficeResult.weeklyBoxOfficeList);
 //         setLoading(false);
 //       });
+//   }, []);
+
+// function MovieList() {
+//   const movieList = useSelector((state) => state.movies.movieList);
+//   const [loading, setLoading] = useState(true);
+//   const dispatch = useDispatch();
+//   // async / await
+//   const getMovies = async () => {
+//     for (let i = 1; i < 11; i++) {
+//       const json = await (
+//         await fetch(
+//           `		http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=8a7f3661b129d3334ad1a5ba059fe560&curPage=${i}`
+//         )
+//       ).json();
+//       dispatch(addMovies(json.movieListResult.movieList));
+//     }
+//     setLoading(false);
+//   };
+
+//   useEffect(() => {
+//     getMovies();
 //   }, []);
