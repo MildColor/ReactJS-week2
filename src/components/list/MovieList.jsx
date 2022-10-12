@@ -9,11 +9,11 @@ function MovieList() {
 
   // async / await
   const getMovies = async () => {
-    const response = await fetch(
-      `	http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=8a7f3661b129d3334ad1a5ba059fe560&targetDt=20120101`
-    );
-
-    const json = await response.json();
+    const json = await (
+      await fetch(
+        `	http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=8a7f3661b129d3334ad1a5ba059fe560&targetDt=20120101`
+      )
+    ).json();
 
     setMovies(json.boxOfficeResult.weeklyBoxOfficeList);
     setLoading(false);
@@ -22,18 +22,6 @@ function MovieList() {
   useEffect(() => {
     getMovies();
   }, []);
-
-  // promise
-  //   useEffect(() => {
-  //     fetch(
-  //       `	http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=8a7f3661b129d3334ad1a5ba059fe560&targetDt=20120101`
-  //     )
-  //       .then((res) => res.json())
-  //       .then((json) => {
-  //         setMovies(json.boxOfficeResult.weeklyBoxOfficeList);
-  //         setLoading(false);
-  //       });
-  //   }, []);
 
   console.log(movies);
   return (
@@ -61,3 +49,15 @@ const Wrapli = styled.li`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 `;
+
+// promise
+//   useEffect(() => {
+//     fetch(
+//       `	http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=8a7f3661b129d3334ad1a5ba059fe560&targetDt=20120101`
+//     )
+//       .then((res) => res.json())
+//       .then((json) => {
+//         setMovies(json.boxOfficeResult.weeklyBoxOfficeList);
+//         setLoading(false);
+//       });
+//   }, []);
