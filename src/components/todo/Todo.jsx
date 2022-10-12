@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteTodo, isDoneTodo } from "../../redux/modules/todolist";
 import { Link } from "react-router-dom";
 import styled from "styled-components";

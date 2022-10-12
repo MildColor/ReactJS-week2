@@ -4,29 +4,37 @@ import { addTodo, deleteAll, deleteTodo } from "../../redux/modules/todolist";
 import styled from "styled-components";
 
 function Form() {
+  // dispatch를 사용하기 위해
   const dispatch = useDispatch();
-  // const nextId = useRef(1);
-  const todos = useSelector((state) => state.todolist.todos);
 
+  // input에서 바뀐 값을 담을 todoObj
   const [todoObj, setTodoObj] = useState({
     title: "",
     body: "",
     isDone: false,
     id: 0,
   });
+
+  // todoObj를 구조분해 할당
   const { title, body } = todoObj;
 
+  // input값들이 바뀌면 setTodoObj를 통해 바뀐값을 적용
   const onChangHandler = (e) => {
+    // 각 input의 name과 value를 구조분해 할당
     const { name, value } = e.target;
+
+    // 변화가 발생한 input의 name과 value를 todoObj의 프로퍼티 키와 vaule로 넣어줌
+    // 불변성을 위해 스프레드 문법으로 obj을 얕은 복사하여 이용.
     setTodoObj({ ...todoObj, [name]: value });
   };
 
+  // 제출시
   const onSubmitHandler = (e) => {
+    // 새로고침 방지
     e.preventDefault();
-    const todo = { ...todoObj };
-
-    dispatch(addTodo({ ...todo, id: todos[todos.length - 1]?.id + 1 || 0 }));
-
+    // dispatch에 action을 addTodo 하여 바뀐 todoObj 값을 인자로 보내준다.
+    dispatch(addTodo({ ...todoObj }));
+    // todoObj를 초기화
     setTodoObj({
       ...todoObj,
       title: "",
@@ -35,6 +43,7 @@ function Form() {
     });
   };
 
+  // 전부 삭제
   const onDeleteHandler = (e) => {
     e.preventDefault();
     dispatch(deleteAll());
