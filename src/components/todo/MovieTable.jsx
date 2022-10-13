@@ -9,7 +9,7 @@ function MovieTable({ movieList }) {
 
   return (
     <table>
-      <thead>
+      {/* <thead>
         <tr>
           {columns.map((column) => (
             <th key={column}>{column}</th>
@@ -24,7 +24,7 @@ function MovieTable({ movieList }) {
             <td>{phone}</td>
           </tr>
         ))}
-      </tbody>
+      </tbody> */}
     </table>
   );
 }

@@ -12,14 +12,13 @@ function MovieList() {
   const dispatch = useDispatch();
   // async / await
   const getMovies = async () => {
-    for (let i = 1; i < 11; i++) {
-      const json = await (
-        await fetch(
-          `		http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=8a7f3661b129d3334ad1a5ba059fe560&curPage=${i}`
-        )
-      ).json();
-      dispatch(addMovies(json.movieListResult.movieList));
-    }
+    const json = await (
+      await fetch(
+        `		http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=8a7f3661b129d3334ad1a5ba059fe560&curPage=1&itemPerPage=10`
+      )
+    ).json();
+    dispatch(addMovies(json.movieListResult.movieList));
+
     setLoading(false);
   };
 
